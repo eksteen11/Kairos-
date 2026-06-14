@@ -1,7 +1,7 @@
 "use client";
 
 import type { NewsEvent } from "@/types";
-import { ScoreBadge } from "./shared";
+import { PanelHeader, ScoreBadge } from "./shared";
 
 export function EventsFeed({
   events,
@@ -14,10 +14,11 @@ export function EventsFeed({
 }) {
   return (
     <section className="panel flex flex-col h-full overflow-hidden">
-      <div className="px-4 py-3 border-b border-[var(--border)]">
-        <h2 className="text-sm font-semibold">Global Event Feed</h2>
-        <p className="text-xs text-[var(--text-muted)]">Ranked by impact × urgency</p>
-      </div>
+      <PanelHeader
+        title="Global Event Feed"
+        subtitle="Click an event — middle and right panels update"
+        hint="News ranked by economic importance. Priority (gold #) = Impact × Urgency. Start with the highest number."
+      />
       <div className="flex-1 overflow-y-auto">
         {events.map((event) => {
           const rank = (event.impact_score ?? 0) * (event.urgency_score ?? 0);
@@ -37,14 +38,17 @@ export function EventsFeed({
                     {event.source} · {new Date(event.published_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                   </p>
                 </div>
-                <span className="text-xs font-mono text-[var(--accent-gold)] shrink-0">
-                  {Math.round(rank / 100)}
-                </span>
+                <div className="text-right shrink-0" title="Priority = Impact × Urgency">
+                  <span className="text-lg font-mono font-semibold text-[var(--accent-gold)]">
+                    {Math.round(rank / 100)}
+                  </span>
+                  <p className="text-[9px] uppercase text-[var(--text-muted)]">Priority</p>
+                </div>
               </div>
               <div className="flex gap-4 mt-2">
-                <ScoreBadge label="Impact" score={event.impact_score} />
-                <ScoreBadge label="Urgency" score={event.urgency_score} />
-                <ScoreBadge label="Confidence" score={event.confidence_score} />
+                <ScoreBadge label="Impact" score={event.impact_score} hint="How much markets could move" />
+                <ScoreBadge label="Urgency" score={event.urgency_score} hint="How fast to react" />
+                <ScoreBadge label="Confidence" score={event.confidence_score} hint="AI certainty on this read" />
               </div>
             </button>
           );

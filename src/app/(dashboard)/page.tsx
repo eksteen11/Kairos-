@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { DashboardGuide } from "@/components/dashboard/DashboardGuide";
 import { EventsFeed } from "@/components/dashboard/EventsFeed";
 import { ImpactCascade } from "@/components/dashboard/ImpactCascade";
 import { MacroPulse } from "@/components/dashboard/MacroPulse";
@@ -55,6 +56,7 @@ export default function DashboardPage() {
 
   return (
     <section className="space-y-4">
+      <DashboardGuide />
       <MacroPulse indicators={macro} />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4" style={{ minHeight: "calc(100vh - 220px)" }}>
@@ -65,6 +67,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-5 space-y-4">
           {selectedEvent && (
             <section className="panel p-4">
+              <p className="text-[10px] uppercase tracking-wider text-[var(--accent-gold)] mb-2">Selected event</p>
               <h2 className="text-sm font-semibold mb-1">{selectedEvent.title}</h2>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">{selectedEvent.summary}</p>
               <div className="flex gap-2 mt-2 flex-wrap">

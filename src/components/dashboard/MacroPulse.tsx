@@ -1,11 +1,14 @@
+import { PanelHeader } from "./shared";
 import type { MacroIndicator } from "@/types";
 
 export function MacroPulse({ indicators }: { indicators: MacroIndicator[] }) {
   return (
     <section className="panel">
-      <div className="px-4 py-3 border-b border-[var(--border)]">
-        <h2 className="text-sm font-semibold">Macro Pulse</h2>
-      </div>
+      <PanelHeader
+        title="Macro Pulse"
+        subtitle="Background conditions — context for every trade"
+        hint="VIX = market fear. Fed Funds = rate environment. CPI = inflation pressure. 10Y = bond market signal."
+      />
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--border)]">
         {indicators.map((ind) => (
           <div key={ind.seriesId} className="bg-[var(--bg-panel)] px-4 py-3">
