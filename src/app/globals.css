@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0b0d12;
+  --bg-panel: #1a1f2e;
+  --bg-panel-hover: #222838;
+  --border: #2a3142;
+  --text-primary: #e8eaed;
+  --text-muted: #8b92a5;
+  --accent: #3b82f6;
+  --accent-gold: #d4a853;
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --neutral: #8b92a5;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-panel: var(--bg-panel);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-gold: var(--accent-gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
+
+.score-high { color: var(--positive); }
+.score-mid { color: var(--accent-gold); }
+.score-low { color: var(--text-muted); }
+
+.direction-positive { color: var(--positive); }
+.direction-negative { color: var(--negative); }
+.direction-neutral { color: var(--neutral); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }

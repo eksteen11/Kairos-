@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kairos AI
 
-## Getting Started
+**Intelligence Before Markets Move.**
 
-First, run the development server:
+Economic Intelligence Platform — MVP Phase 1.
+
+## Quick Start
 
 ```bash
+npm install
+cp .env.example .env.local   # add your keys (optional for demo mode)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000** — works immediately with demo data. No API keys required.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What Works Now
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Global Event Dashboard** — live events, impact cascade, macro pulse, volatility panel
+- **Digital Twin Graph** — interactive economic network with shockwave simulation
+- **Volatility Radar** — opportunity scoring from VIX + HV + macro risk
+- **News Intelligence Agent** — Finnhub, FRED, SEC, RSS ingestion
+- **Economic Impact Engine** — 1st/2nd/3rd order effect predictions
+- **Demo mode** — full UI works without Supabase or API keys
 
-## Learn More
+## Setup Supabase (optional)
 
-To learn more about Next.js, take a look at the following resources:
+1. Create project at [supabase.com](https://supabase.com)
+2. Run SQL from `supabase/migrations/0001_init.sql` in SQL Editor
+3. Add keys to `.env.local`
+4. Seed graph: `npm run seed`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Keys (all free)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Key | Get it from |
+|-----|-------------|
+| `FINNHUB_API_KEY` | [finnhub.io/register](https://finnhub.io/register) |
+| `FRED_API_KEY` | [fred.stlouisfed.org](https://fred.stlouisfed.org/docs/api/api_key.html) |
+| `FMP_API_KEY` | [financialmodelingprep.com/register](https://site.financialmodelingprep.com/register) |
+| `OPENAI_API_KEY` | [platform.openai.com](https://platform.openai.com) (for AI scoring) |
 
-## Deploy on Vercel
+## Trigger News Pipeline
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+curl http://localhost:3000/api/cron/ingest-news
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Pages
+
+| Route | Feature |
+|-------|---------|
+| `/` | Global Event Dashboard |
+| `/graph` | Digital Twin Graph |
+| `/volatility` | Volatility Radar |
